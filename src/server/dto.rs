@@ -31,3 +31,8 @@ pub struct DeleteValueRequestDto {
     pub namespace: String,
 }
 
+#[derive(Serialize, Deserialize)]
+pub struct PostNamespaceRequestDto {
+    pub namespace: String
+}
+

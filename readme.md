@@ -62,3 +62,12 @@ class ChecksumResponse {
     checksum: string
 }
 ```
+
+### POST /api/namespace
+Creates a new empty namespace (does not update checksum, only value modifications do)
+Request:
+```ts
+class NamespaceRequest {
+    namespace: string; // Path to the namespace
+}
+```
