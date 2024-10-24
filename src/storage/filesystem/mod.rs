@@ -1,4 +1,4 @@
-use std::{env, error::Error, fs, path::{Component, PathBuf}, str::FromStr};
+use std::{env, error::Error, fs, path::PathBuf, str::FromStr};
 
 use crate::storage::utils::{preprocess_filename, preprocess_namespace};
 
@@ -16,7 +16,7 @@ fn resolve_file_path(namespace: String, file_name: String) -> PathBuf {
     let mut file_path = get_root_directory();
     file_path.push(processed_namespace);
     file_path.push(processed_name);
-    dbg!(file_path)
+    file_path
 }
 
 pub fn get_file_content(namespace: String, file_name: String) -> Result<Vec<u8>, Box<dyn Error>> {
