@@ -1,4 +1,4 @@
-use axum::{http::StatusCode, routing::{delete, get, post}, Json, Router};
+use axum::{http::StatusCode, routing::{delete, get, post, put}, Json, Router};
 use axum_macros::debug_handler;
 use base64::prelude::*;
 
@@ -11,7 +11,7 @@ mod dto;
 pub async fn get_router() -> axum::Router {
     Router::new()
         .route("/api/get", get(get_value))
-        .route("/api/checksum", get(get_checksum))
+        .route("/api/checksum", put(get_checksum))
         .route("/api/insert", post(post_value))
         .route("/api/delete", delete(delete_value))
         .route("/api/namespace", post(post_namespace))
