@@ -1,4 +1,4 @@
-use std::collections::{BTreeMap, HashMap};
+use std::collections::BTreeMap;
 
 use serde::{Deserialize, Serialize};
 
@@ -37,5 +37,11 @@ pub fn get_value(byte_data: Vec<u8>, key: &str) -> Option<String> {
 pub fn set_value(byte_data: Vec<u8>, key: String, value: String) -> Vec<u8> {
     let mut data = deserialize(byte_data);
     data.content.insert(key, value);
+    serialize(&data)
+}
+
+pub fn delete_value(byte_data: Vec<u8>, key: &str) -> Vec<u8> {
+    let mut data = deserialize(byte_data);
+    data.content.remove(key);
     serialize(&data)
 }

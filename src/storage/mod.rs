@@ -1,7 +1,8 @@
-use std::{error::Error, path::PathBuf};
+use std::error::Error;
 
 mod filesystem;
 mod maps;
+mod utils;
 
 const DATA_FILE_NAME: &'static str = "data.dpdb";
 
@@ -22,12 +23,15 @@ pub fn get(namespace: String, key: &str) -> Result<Option<String>, Box<dyn Error
     Ok(maps::get_value(file_content, key))
 }
 
-pub fn delete(namespace: PathBuf, key: &str) -> Result<(), Box<dyn Error>> {
-    todo!()
+pub fn delete(namespace: String, key: &str) -> Result<(), Box<dyn Error>> {
+    let file_content = filesystem::get_file_content(namespace.clone(), DATA_FILE_NAME.to_owned())?;
+    let output = maps::delete_value(file_content, key);
+    filesystem::save_file_content(namespace, DATA_FILE_NAME.to_owned(), output)?;
+    Ok(())
 }
 
-pub fn create_namespace(namespace: PathBuf) -> Result<(), Box<dyn Error>> {
-    todo!()
+pub fn create_namespace(namespace: String) -> Result<(), Box<dyn Error>> {
+    filesystem::create_namespace_directory(namespace)
 }
 
 pub fn get_checksum() -> String {
