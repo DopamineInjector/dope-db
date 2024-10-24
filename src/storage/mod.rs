@@ -3,6 +3,7 @@ use std::error::Error;
 mod filesystem;
 mod maps;
 mod utils;
+mod checksum;
 
 const DATA_FILE_NAME: &'static str = "data.dpdb";
 
