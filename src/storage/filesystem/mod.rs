@@ -21,7 +21,7 @@ fn resolve_file_path(namespace: String, file_name: String) -> PathBuf {
 
 pub fn get_file_content(namespace: String, file_name: String) -> Result<Vec<u8>, Box<dyn Error>> {
     let file_path = resolve_file_path(namespace, file_name);
-    match fs::try_exists(file_path.clone()) {
+    match fs::exists(file_path.clone()) {
         Err(_) => {
             return Err(Box::from(format!("Could not open file {:?}", file_path)))
         },
